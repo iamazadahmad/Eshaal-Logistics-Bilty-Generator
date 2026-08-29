@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eshaal Logistics — Bilty Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="app-header">
+    <h1>Eshaal Logistics — Bilty Generator</h1>
+    <!-- <p>Fill in the consignment details below and click <strong>Download Bilty PDF</strong> — it downloads straight away, no preview or print dialog.</p> -->
+  </header>
+
+  <main class="app-container">
+
+    <!-- ============ INPUT FORM ============ -->
+    <section class="panel" id="formPanel">
+
+      <h2>Consignment Details</h2>
+      <div class="grid-2">
+        <label>Serial No.
+          <input type="text" id="serialNumber" placeholder="e.g. 1024">
+        </label>
+        <label>Vehicle No.
+          <input type="text" id="vehicleNumber" placeholder="e.g. WB23E6413">
+        </label>
+        <label>CN No.
+          <input type="text" id="cnNumber" placeholder="e.g. 4521845934">
+        </label>
+        <label>CN Date
+          <input type="date" id="cnDate">
+        </label>
+        <label>From
+          <input type="text" id="from" placeholder="e.g. BOARD GHAR">
+        </label>
+        <label>To
+          <input type="text" id="to" placeholder="e.g. KOLKATA">
+        </label>
+      </div>
+
+      <div class="grid-2">
+        <label>Consignor
+          <textarea id="consignor" rows="2" placeholder="Consignor name &amp; address"></textarea>
+        </label>
+        <label>Consignee
+          <textarea id="consignee" rows="2" placeholder="Consignee name &amp; address"></textarea>
+        </label>
+      </div>
+
+      <h2>Items</h2>
+      <div class="table-scroll">
+        <table class="input-table" id="itemsInputTable">
+          <thead>
+            <tr>
+              <th style="width:15%">Product Qty.</th>
+              <th>Particulars of Goods (Said to Contain)</th>
+              <th style="width:20%">Actual Wt. (Kgs)</th>
+              <th style="width:8%"></th>
+            </tr>
+          </thead>
+          <tbody id="itemsInputBody">
+            <!-- rows injected by script.js -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="items-toolbar">
+        <button type="button" id="addRowBtn">+ Add Row</button>
+      </div>
+
+      <label class="total-weight-field">Total Wt. (Kgs)
+        <input type="text" id="totalWeight" placeholder="e.g. 7 MT">
+      </label>
+
+      <div class="actions">
+        <button type="button" id="downloadBtn" class="primary">Download Bilty PDF</button>
+      </div>
+      <!-- <p class="hint">Generates both the Consignee Copy and POD Copy as a single 2-page PDF and downloads it immediately.</p> -->
+    </section>
+
+  </main>
+
+  <!-- Hidden render target used only to build the PDF — never shown to the user -->
+  <div id="pdfRenderRoot" class="pdf-render-root" aria-hidden="true">
+    <div class="bilty-page" id="page-consignee"></div>
+    <div class="bilty-page" id="page-pod"></div>
+  </div>
+
+  <script src="vendor/html2canvas.min.js"></script>
+  <script src="vendor/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
